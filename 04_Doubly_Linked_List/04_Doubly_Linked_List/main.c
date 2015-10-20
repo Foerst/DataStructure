@@ -76,6 +76,5 @@ int main()
     printf("Length: %d\n", DLinkList_Length(list));
     
     DLinkList_Destroy(list);
-    system("pause");
     return 0;
 }
