@@ -77,7 +77,7 @@ int CircleList_Insert(CircleList *list, CircleListNode *node, int pos)
     }
     node->next = current->next;
     current->next = node;
-    if (0 == cList->length) {////第一次插入时，游标指向第一个结点
+    if (0 == cList->length) {//第一次插入时，游标指向第一个结点
         cList->slider = node;
     }
     cList->length++;
@@ -116,7 +116,7 @@ CircleListNode *CircleList_Delete(CircleList *list, int pos)
         return NULL;
     }
     TCircleList *cList = (TCircleList *)list;
-    if (pos < 0 || pos > cList->length) {
+    if (pos < 0 || pos >= cList->length) {
         return NULL;
     }
     CircleListNode *current = &cList->header;

@@ -95,7 +95,7 @@ LinkListNode *LinkList_Delete(LinkList *list, int pos)
     if (!list) return NULL;
     TLinkList *tmp = (TLinkList *)list;
     int length = LinkList_Length(tmp);
-    if (pos < 0 || pos > length) {
+    if (pos < 0 || pos >= length) {
         return NULL;
     }
     int index = 0;
