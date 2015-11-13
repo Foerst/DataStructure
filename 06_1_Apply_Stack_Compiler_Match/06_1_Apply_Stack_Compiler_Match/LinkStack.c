@@ -37,6 +37,7 @@ void LinkStack_Clear(LinkStack *stack)
 
 int LinkStack_Push(LinkStack *stack, void *item)
 {
+    //item 与linklist的结点结构不一样，需要包装一下
     LinkStackNode *nod = (LinkStackNode *)malloc(sizeof(LinkStackNode));//alloc
     if (!nod) {
         return -1;

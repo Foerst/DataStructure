@@ -86,7 +86,7 @@ int SeqList_Insert(SeqList* list, SeqListNode* node, int pos)
     }
     tmp->node[i] = (int *)node;
     tmp->length++;
-    return i;
+    return 0;
 }
 
 SeqListNode* SeqList_Get(SeqList* list, int pos)

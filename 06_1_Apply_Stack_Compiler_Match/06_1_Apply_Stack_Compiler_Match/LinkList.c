@@ -94,13 +94,12 @@ LinkListNode *LinkList_Delete(LinkList *list, int pos)
     }
     int index = 0;
     LinkListNode *current = &tmp->header;
-    while (current && index < pos) {
+    while (index < pos) {
         current = current->next;
         index++;
     }
     LinkListNode *deleteNode = current->next;
     current->next = deleteNode->next;
-    deleteNode->next = NULL;
     tmp->length--;
     return deleteNode;
 }

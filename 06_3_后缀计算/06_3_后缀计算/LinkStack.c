@@ -2,8 +2,8 @@
 //  LinkStack.c
 //  06_LinkStack
 //
-//  Created by chan on 15/10/21.
-//  Copyright © 2015年 chan. All rights reserved.
+//  Created by jhon chan on 15/10/21.
+//  Copyright © 2015年 jhon chan. All rights reserved.
 //
 
 #include "LinkStack.h"
@@ -30,17 +30,15 @@ void LinkStack_Destroy(LinkStack *stack)
 
 void LinkStack_Clear(LinkStack *stack)
 {
-    while (LinkStack_Size(stack)) {
+    while (LinkList_Length(stack)) {
         LinkStack_Pop(stack);
     }
 }
 
 int LinkStack_Push(LinkStack *stack, void *item)
 {
-    LinkStackNode *nod = (LinkStackNode *)malloc(sizeof(LinkStackNode));//alloc
-    if (!nod) {
-        return -1;
-    }
+    //item 与linklist的结点结构不一样，需要包装一下
+    LinkStackNode *nod = malloc(sizeof(LinkStackNode));//alloc
     nod->val = item;
     return LinkList_Insert(stack, (LinkListNode *)nod, 0);
 }

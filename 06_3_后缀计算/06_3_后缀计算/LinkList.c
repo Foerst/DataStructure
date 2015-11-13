@@ -100,7 +100,6 @@ LinkListNode *LinkList_Delete(LinkList *list, int pos)
     }
     LinkListNode *deleteNode = current->next;
     current->next = deleteNode->next;
-    deleteNode->next = NULL;
     tmp->length--;
     return deleteNode;
 }

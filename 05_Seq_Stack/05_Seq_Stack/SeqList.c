@@ -13,7 +13,7 @@
 typedef struct _t_SeqList{
     int capacity;
     int length;
-    int **node;
+    void **node;
 }TSeqList;
 
 SeqList* SeqList_Create(int capacity)
@@ -29,7 +29,7 @@ SeqList* SeqList_Create(int capacity)
     memset(list, 0, sizeof(TSeqList));
     list->length = 0;
     list->capacity = capacity;
-    list->node = (int **)malloc(sizeof(int *)*capacity);
+    list->node = (void **)malloc(sizeof(void *)*capacity);
     if (list->node == NULL) {
         ret = 2;
         printf("func SeqList_Create() create node err :%d \n", ret);
@@ -57,7 +57,7 @@ void SeqList_Clear(SeqList* list)
     TSeqList *tmp = (TSeqList *)list;
     tmp->length = 0;
     if (tmp->node) {
-        memset(tmp->node, 0, sizeof(int *)*tmp->capacity);
+        memset(tmp->node, 0, sizeof(void *)*tmp->capacity);
     }
 }
 
@@ -84,9 +84,9 @@ int SeqList_Insert(SeqList* list, SeqListNode* node, int pos)
     for (i = SeqList_Length(tmp); i > pos; i --) {
         tmp->node[i] = tmp->node[i-1];
     }
-    tmp->node[i] = (int *)node;
+    tmp->node[i] = node;
     tmp->length++;
-    return i;
+    return 0;
 }
 
 SeqListNode* SeqList_Get(SeqList* list, int pos)
@@ -94,8 +94,7 @@ SeqListNode* SeqList_Get(SeqList* list, int pos)
     if (list == NULL) return NULL;
     TSeqList *tmp = (TSeqList *)list;
     if (pos < 0 || pos > SeqList_Length(tmp)) return NULL;
-    SeqListNode *node = (SeqListNode *)tmp->node[pos];
-    return node;
+    return tmp->node[pos];
 }
 
 SeqListNode* SeqList_Delete(SeqList* list, int pos)
@@ -103,11 +102,11 @@ SeqListNode* SeqList_Delete(SeqList* list, int pos)
     if (list == NULL) return NULL;
     TSeqList *tmp = (TSeqList *)list;
     if (pos < 0 || pos > SeqList_Length(tmp)) return NULL;
-    SeqListNode *node = (SeqListNode *)tmp->node[pos];
+    SeqListNode *deletenode = tmp->node[pos];
     int i;
     for (i = pos; i < SeqList_Length(tmp)-1; i ++) {
         tmp->node[i] = tmp->node[i+1];
     }
     tmp->length--;
-    return node;
+    return deletenode;
 }
