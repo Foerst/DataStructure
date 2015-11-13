@@ -87,25 +87,25 @@ float calculateStr(const char *s)
     while (s[i] != '\0') {
         if (isNumber(s[i])) {
             int num = charToInt(s[i]);
-            LinkStack_Push(stack, (void *)&num);
+            LinkStack_Push(stack, (void *)num);
         }
         if (isOperator(s[i])) {
-            int *rightNum = (int *)LinkStack_Pop(stack);
-            int *leftNum = (int *)LinkStack_Pop(stack);
-            int result = calculateResultWithOperator(*leftNum, *rightNum, s[i]);
-            LinkStack_Push(stack, &result);
+            int rightNum = (int)LinkStack_Pop(stack);
+            int leftNum = (int)LinkStack_Pop(stack);
+            int result = calculateResultWithOperator(leftNum, rightNum, s[i]);
+            LinkStack_Push(stack, (void *)result);
         }
         i ++;
     }
     if (s[i] == '\0' && LinkStack_Size(stack)) {
-        int *ret = (int *)LinkStack_Pop(stack);
-        return *ret;
+        int ret = (int)LinkStack_Pop(stack);
+        return ret;
     }
     return 0;
 }
 
 int main(int argc, const char * argv[]) {
-    char *s = "92+";
-    printf("9+2=%.1f\n", calculateStr(s));
+    char *s = "891-5*+";
+    printf("8+(9-1)*5 = %.1f\n", calculateStr(s));
     return 0;
 }
