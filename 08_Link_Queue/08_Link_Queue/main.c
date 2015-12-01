@@ -10,6 +10,7 @@
 #include "LinkQueue.h"
 #include <stdlib.h>
 
+//添加注释
 int main(int argc, const char * argv[]) {
     int  i = 0, a[10];
     
