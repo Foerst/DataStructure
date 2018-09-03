@@ -50,8 +50,5 @@ int main(int argc, const char * argv[]) {
     
     hash_table_free(t);
     
-    
-    
-    
     return 0;
 }

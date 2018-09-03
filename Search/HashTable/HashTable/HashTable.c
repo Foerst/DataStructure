@@ -10,6 +10,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct _t_node{
+    int key;
+    void *value;
+    struct _t_node *next;
+} Node;
+
+
+struct _t_hash_table{
+    Node **list;
+    int size;
+};
+
 static int hash(HashTable *table, int key){
     return key%table->size;
 }
@@ -59,14 +71,9 @@ void hash_table_set(HashTable *table,int key, void *value){
 }
 
 void *hash_table_get(HashTable *table,int key){
-    int index = hash(table, key);
-    Node *node = table->list[index];
-    Node *p = node;
-    while (p) {
-        if (p->key == key) {
-            return p->value;
-        }
-        p = p->next;
+    Node *p = find(table, key);
+    if (p) {
+        return p->value;
     }
     return NULL;
 }

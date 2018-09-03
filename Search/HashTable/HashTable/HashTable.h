@@ -11,16 +11,9 @@
 
 #include <stdio.h>
 
-typedef struct _t_node{
-    int key;
-    void *value;
-    struct _t_node *next;
-}Node;
 
-typedef struct _t_hash_table{
-    Node **list;
-    int size;
-}HashTable;
+
+typedef struct _t_hash_table HashTable;
 
 void hash_table_create(HashTable **table, int capacity);
 

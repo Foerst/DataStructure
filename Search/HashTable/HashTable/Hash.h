@@ -18,6 +18,6 @@ typedef struct _t_hash_map{
 
 void hash_map_create(HashMap **map, int capacity);
 void hash_map_set(HashMap *map, int key, int value);
-int hash_map_get(HashMap *map, int key);
+int hash_map_search(HashMap *map, int key);
 
 #endif /* Hash_h */
