@@ -6,11 +6,12 @@
 //  Copyright © 2019 cxy. All rights reserved.
 //
 
-import Foundation
 
 class BinTreeNode<T> {
     var data: T?
+    
     var lchild: BinTreeNode<T>?
+    
     var rchild: BinTreeNode<T>?
     
     init(data: T?) {
@@ -23,33 +24,54 @@ struct BinTree<T> {
     var root: BinTreeNode<T>?
     
     init() {
-        root = BinTreeNode<T>(data: nil)
     }
+    
     
     private func visit(_ node: BinTreeNode<T>) {
-        print(node.data!)
+        print(node.data!, separator: " ", terminator: " ")
+//        print(node.data!)
     }
     
-    func preOrderTraverse(_ root: BinTreeNode<T>?) {
+    mutating func createBinTree(_ fun: (inout BinTreeNode<T>?)->Void) {
+        fun(&root)
+    }
+    
+    mutating func createBinTree(_ fun: ()->BinTreeNode<T>?) {
+        root = fun()
+    }
+    
+    func preOrderTraverse() {
+        _preOrderTraverse(root)
+    }
+    
+    private func _preOrderTraverse(_ root: BinTreeNode<T>?) {
         if root != nil {
             visit(root!)
-            preOrderTraverse(root?.lchild)
-            preOrderTraverse(root?.rchild)
+            _preOrderTraverse(root?.lchild)
+            _preOrderTraverse(root?.rchild)
         }
     }
     
-    func inOrderTraverse(_ root: BinTreeNode<T>?) {
+    func inOrderTraverse() {
+        _inOrderTraverse(root)
+    }
+    
+    func _inOrderTraverse(_ root: BinTreeNode<T>?) {
         if root != nil {
-            inOrderTraverse(root?.lchild)
+            _inOrderTraverse(root?.lchild)
             visit(root!)
-            inOrderTraverse(root?.rchild)
+            _inOrderTraverse(root?.rchild)
         }
     }
     
-    func postOrderTraverse(_ root: BinTreeNode<T>?) {
+    func postOrderTraverse() {
+        _postOrderTraverse(root)
+    }
+    
+    func _postOrderTraverse(_ root: BinTreeNode<T>?) {
         if root != nil {
-            postOrderTraverse(root?.lchild)
-            postOrderTraverse(root?.rchild)
+            _postOrderTraverse(root?.lchild)
+            _postOrderTraverse(root?.rchild)
             visit(root!)
         }
     }

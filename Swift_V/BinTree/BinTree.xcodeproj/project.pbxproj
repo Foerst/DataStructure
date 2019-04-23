@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		80E0D5FA226DE8A500D2AB43 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0D5F9226DE8A500D2AB43 /* main.swift */; };
 		80E0D601226DE8B900D2AB43 /* BinTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0D600226DE8B900D2AB43 /* BinTree.swift */; };
+		80E0D603226EE95100D2AB43 /* ThreadBinTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0D602226EE95100D2AB43 /* ThreadBinTree.swift */; };
+		80E0D615226F303600D2AB43 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0D614226F303600D2AB43 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,8 @@
 		80E0D5F6226DE8A500D2AB43 /* BinTree */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BinTree; sourceTree = BUILT_PRODUCTS_DIR; };
 		80E0D5F9226DE8A500D2AB43 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		80E0D600226DE8B900D2AB43 /* BinTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinTree.swift; sourceTree = "<group>"; };
+		80E0D602226EE95100D2AB43 /* ThreadBinTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadBinTree.swift; sourceTree = "<group>"; };
+		80E0D614226F303600D2AB43 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				80E0D5F9226DE8A500D2AB43 /* main.swift */,
 				80E0D600226DE8B900D2AB43 /* BinTree.swift */,
+				80E0D602226EE95100D2AB43 /* ThreadBinTree.swift */,
+				80E0D614226F303600D2AB43 /* Test.swift */,
 			);
 			path = BinTree;
 			sourceTree = "<group>";
@@ -122,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80E0D603226EE95100D2AB43 /* ThreadBinTree.swift in Sources */,
+				80E0D615226F303600D2AB43 /* Test.swift in Sources */,
 				80E0D5FA226DE8A500D2AB43 /* main.swift in Sources */,
 				80E0D601226DE8B900D2AB43 /* BinTree.swift in Sources */,
 			);
