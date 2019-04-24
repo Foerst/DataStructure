@@ -7,7 +7,11 @@
 //
 
 
-class BinTreeNode<T> {
+class BinTreeNode<T: Equatable>: Equatable {
+    static func == (lhs: BinTreeNode<T>, rhs: BinTreeNode<T>) -> Bool {
+        return lhs.data == rhs.data && lhs.lchild == rhs.lchild && lhs.rchild == rhs.rchild
+    }
+    
     var data: T?
     
     var lchild: BinTreeNode<T>?
@@ -19,7 +23,7 @@ class BinTreeNode<T> {
     }
 }
 
-struct BinTree<T> {
+struct BinTree<T: Equatable> {
     
     var root: BinTreeNode<T>?
     

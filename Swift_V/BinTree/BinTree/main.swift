@@ -6,8 +6,8 @@
 //  Copyright © 2019 cxy. All rights reserved.
 //
 
-//testBinTree()
+testBinTree()
 
-testThreadBinaryTree()
+//testThreadBinaryTree()
 
 

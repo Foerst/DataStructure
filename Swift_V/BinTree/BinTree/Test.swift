@@ -51,16 +51,38 @@ func testBinTree() {
     
     binTree.preOrderTraverse()
     
-    print("\ninOrderTraverse:")
+    print("\n\ninOrderTraverse:")
     
     binTree.inOrderTraverse()
     
-    print("\npostOrderTraverse:")
+    print("\n\npostOrderTraverse:")
     
     binTree.postOrderTraverse()
     
-    print("\n")
+    print("\n\nLevel Traverse:")
     
+    levelTraverse(binTree.root)
+    
+    print("\n\ncountLeafNum:")
+    countLeafNum(binTree.root)
+    
+    print("\nLeaf Number = \(leafNum)")
+    
+    print("\nbefore reverse level Traverse:")
+    
+    levelTraverse(binTree.root)
+    
+    print("\n\nReverse BinTree:")
+    
+    reverseBinTree(binTree.root)
+    
+    print("\n\nafter reverse level Traverse:")
+    
+    levelTraverse(binTree.root)
+    
+    print("\nBinTree Deep = \(binTreeDeep(binTree.root))")
+    
+    printNodeDeep(binTree.root)
 }
 
 
