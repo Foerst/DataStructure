@@ -11,12 +11,31 @@ import Foundation
 private let vertexsCountLimit = 100
 private let edgesCountLimit = 4950
 
-struct Graph {
+fileprivate class EdgeNode {
+    // 邻接点索引
+    var adjvex = 0
+    var weight = 0
+    var next: EdgeNode?
+    
+    init(adjvex: Int, weight: Int = 0) {
+        self.adjvex = adjvex
+        self.weight = weight
+    }
+}
+
+fileprivate struct VertexNode {
+    var data: Character?
+    var firstEdge: EdgeNode?
+}
+
+class Graph {
     /// 顶点数组
     private var vertexs = [Character]()
     
     /// 邻接矩阵
     private var adjMatrix: [[Int]]?
+    
+    private var adjList: [VertexNode]?
     
     /// 顶点数
     private var vertexsCount = 0
@@ -26,7 +45,7 @@ struct Graph {
     
     private lazy var visited = [Bool]()
     
-    mutating func createAdjMatrix() {
+    func createAdjMatrix() {
         print("please input number of vertexs(>0):")
         guard let str = readLine(), let vcount = Int(str), vcount > 0 else {
             fatalError("wrong data!")
@@ -79,17 +98,62 @@ struct Graph {
     }
     
     
-    private mutating func visit(index: Int) {
+    func createAdjList() {
+        print("please input number of vertexs(>0):")
+        guard let str = readLine(), let vcount = Int(str), vcount > 0 else {
+            fatalError("wrong data!")
+        }
+        vertexsCount = vcount
+        
+        adjList = [VertexNode]()
+        visited = [Bool](repeating: false, count: vertexsCount)
+        
+        print("please input number of edges:")
+        guard let _str = readLine(), let ecount = Int(_str) else {
+            fatalError("Not a number!")
+        }
+        edgesCount = ecount
+        
+        print("input vertex, separated with ' '")
+        guard let tmp = readLine(), !tmp.isEmpty, tmp.split(separator: " ").count == vertexsCount else {
+            fatalError("wrong data!")
+        }
+        
+        let vertexArray = tmp.split(separator: " ")
+        let _ = vertexArray.map({ (str) -> Character in
+            let char = str.first!
+            adjList?.append(VertexNode(data: char, firstEdge: nil))
+            return char
+        })
+        
+        for _ in 0..<edgesCount {
+            print("input edge start Vertext index & end vertext index, separated with ' '")
+            guard let indexes = readLine(), !indexes.isEmpty, indexes.split(separator: " ").count == 2 else {
+                fatalError("wrong data!")
+            }
+            
+            let idArray = indexes.split(separator: " ").map { (substr) -> Int in
+                return Int(substr)!
+            }
+            let start = Int(idArray.first!)
+            let end = Int(idArray.last!)
+            let node = EdgeNode(adjvex: end)
+            node.next = adjList?[start].firstEdge
+            adjList?[start].firstEdge = node
+        }
+
+    }
+    
+    private func visit(index: Int) {
         if index >= 0 && index < vertexsCount {
             print("node \(String(vertexs[index]))")
             visited[index] = true
         } else {
             print("visit index error!")
         }
-        
     }
     
-    mutating func DFS_AdjMatrix() {
+    func DFS_AdjMatrix() {
         print("\(#function)")
         for i in 0..<vertexsCount { // 非连通图
             if !visited[i] {
@@ -98,7 +162,7 @@ struct Graph {
         }
     }
     
-    private mutating func _DFS_AdjMatrix(_ i: Int) {
+    private func _DFS_AdjMatrix(_ i: Int) {
         guard !vertexs.isEmpty, let matrix = adjMatrix, !matrix.isEmpty else {
             print("Data Error!")
             return
@@ -113,11 +177,30 @@ struct Graph {
     }
     
     func DFS_AdjList() {
-        
+        print("\(#function)")
+        for i in 0..<vertexsCount { // 非连通图
+            if !visited[i] {
+                _DFS_AdjList(i)
+            }
+        }
     }
     
-    mutating func BFS_AdjMatrix() {
+    private func _DFS_AdjList(_ i: Int) {
+        print("node \(String((adjList?[i].data)!))")
+        visited[i] = true
+        var node = adjList?[i].firstEdge
+        while node != nil {
+            let j = (node?.adjvex)!
+            if !visited[j] {
+                _DFS_AdjList(j)
+            }
+            node = node?.next
+        }
+    }
+    
+    func BFS_AdjMatrix() {
         print("\(#function)")
+        reset()
         guard !vertexs.isEmpty, let matrix = adjMatrix, !matrix.isEmpty else {
             print("Data Error!")
             return
@@ -143,7 +226,41 @@ struct Graph {
         }
     }
     
+    private func reset() {
+        for i in 0..<visited.count {
+            visited[i] = false
+        }
+    }
+    
     func BFS_AdjList() {
+        print("\(#function)")
+        reset()
         
+        let queue = Queue<Int>()
+
+        for i in 0..<vertexsCount {
+            if !visited[i] {
+                queue.enqueue(i)
+                print("node \(String((adjList?[i].data)!))")
+                visited[i] = true
+                
+                while !queue.isEmpty {
+                    if let idx = queue.dequeue() {
+                        
+                        var node = adjList?[idx].firstEdge
+                        while node != nil {
+                            let j = (node?.adjvex)!
+                            if !visited[j] {
+                                queue.enqueue(j)
+                                print("node \(String((adjList?[j].data)!))")
+                                visited[j] = true
+                            }
+                            node = node?.next
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
 }

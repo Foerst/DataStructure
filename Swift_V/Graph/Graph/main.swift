@@ -8,9 +8,12 @@
 
 import Foundation
 
-var graph = Graph()
-graph.createAdjMatrix()
+let graph = Graph()
+//graph.createAdjMatrix()
 //graph.DFS_AdjMatrix()
+//graph.BFS_AdjMatrix()
 
-graph.BFS_AdjMatrix()
+graph.createAdjList()
+graph.DFS_AdjList()
+graph.BFS_AdjList()
 
