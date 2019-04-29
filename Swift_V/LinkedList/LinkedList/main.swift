@@ -26,6 +26,6 @@ list.create(input: "-1 1 4 7 10 11 12")
 
 list2.create(input: "1 2 9")
 
-list.mergeTwoLists(list2)
+let list3 = list.mergeList(list2)
 
-list.traverse()
+list3.traverse()

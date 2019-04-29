@@ -195,4 +195,39 @@ class LinkedList {
             pre1?.next = p2
         }
     }
+    
+    
+    func mergeList(_ list: LinkedList) -> LinkedList {
+        var p: Node? = Node()
+        let t = p!
+        var p1 = header.next
+        var p2 = list.header.next
+        
+        while p1 != nil && p2 != nil {
+            let num1 = Int(p1?.data ?? "")!
+            let num2 = Int(p2?.data ?? "")!
+            if num1 < num2 {
+                p?.next = p1
+                p1 = p1?.next
+            } else {
+                p?.next = p2
+                p2 = p2?.next
+            }
+            p = p?.next
+        }
+        
+        if p1 != nil {
+            p?.next = p1
+        }
+        
+        if p2 != nil {
+            p?.next = p2
+        }
+        let ret = LinkedList()
+        ret.header = t
+        return ret
+    }
 }
+
+
+
