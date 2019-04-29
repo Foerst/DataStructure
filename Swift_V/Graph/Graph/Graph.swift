@@ -263,4 +263,19 @@ class Graph {
             }
         }
     }
+    
+    // Minimum Cost Spanning Tree 最小生成树
+    func mcst() -> Int {
+        return 0
+    }
+    
+    // Prim普里姆算法
+    private func prim() {
+        
+    }
+    
+    // 克鲁斯卡尔算法
+    private func kruskal() {
+        
+    }
 }
