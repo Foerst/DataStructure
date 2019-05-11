@@ -12,11 +12,11 @@ func testBinTree() {
     var binTree = BinTree<String>()
     
     func createTree(_ tree: inout BinTreeNode<String>?) {
-        if let data = readLine(strippingNewline: true) {
-            if data.elementsEqual("#") {
+        if let value = readLine(strippingNewline: true) {
+            if value.elementsEqual("#") {
                 tree = nil
             } else {
-                tree = BinTreeNode<String>(data: data)
+                tree = BinTreeNode<String>(value: value)
                 createTree(&tree!.lchild)
                 createTree(&tree!.rchild)
             }
@@ -25,11 +25,11 @@ func testBinTree() {
     
     func createBinTree() -> BinTreeNode<String>? {
         var root: BinTreeNode<String>?
-        if let data = readLine(strippingNewline: true) {
-            if data.elementsEqual("#") {
+        if let value = readLine(strippingNewline: true) {
+            if value.elementsEqual("#") {
                 root = nil
             } else {
-                root = BinTreeNode<String>(data: data)
+                root = BinTreeNode<String>(value: value)
                 root?.lchild = createBinTree()
                 root?.rchild = createBinTree()
             }

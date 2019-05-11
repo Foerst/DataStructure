@@ -9,17 +9,17 @@
 
 class BinTreeNode<T: Equatable>: Equatable {
     static func == (lhs: BinTreeNode<T>, rhs: BinTreeNode<T>) -> Bool {
-        return lhs.data == rhs.data && lhs.lchild == rhs.lchild && lhs.rchild == rhs.rchild
+        return lhs.value == rhs.value && lhs.lchild == rhs.lchild && lhs.rchild == rhs.rchild
     }
     
-    var data: T?
+    var value: T?
     
     var lchild: BinTreeNode<T>?
     
     var rchild: BinTreeNode<T>?
     
-    init(data: T?) {
-        self.data = data
+    init(value: T?) {
+        self.value = value
     }
 }
 
@@ -32,7 +32,7 @@ struct BinTree<T: Equatable> {
     
     
     private func visit(_ node: BinTreeNode<T>) {
-        print(node.data!, separator: " ", terminator: " ")
+        print(node.value!, separator: " ", terminator: " ")
 //        print(node.data!)
     }
     
