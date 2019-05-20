@@ -11,13 +11,13 @@
 
 static void quick_sort(int a[], int m, int n){
     int low = m;
-    int heigh= n;
-    if(low>=heigh) return;
+    int high= n;
+    if(low>=high) return;
     int pivot = a[low]; // 枢轴
-    while (low<heigh) {
-        while (a[heigh]>pivot && low<heigh) heigh--;
-        swap(&pivot, a+heigh);
-        while (a[low]<pivot && low<heigh) low++;
+    while (low<high) {
+        while (a[high]>pivot && low<high) high--;
+        swap(&pivot, a+high);
+        while (a[low]<pivot && low<high) low++;
         swap(&pivot, a+low);
     }
     quick_sort(a, m, low-1);
