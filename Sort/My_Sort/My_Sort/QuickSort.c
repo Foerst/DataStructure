@@ -16,9 +16,9 @@ static void quick_sort(int a[], int m, int n){
     int pivot = a[low]; // 枢轴
     while (low<high) {
         while (a[high]>pivot && low<high) high--;
-        swap(&pivot, a+high);
+        swap(a+low, a+high);
         while (a[low]<pivot && low<high) low++;
-        swap(&pivot, a+low);
+        swap(a+low, a+high);
     }
     quick_sort(a, m, low-1);
     quick_sort(a, low+1, n);

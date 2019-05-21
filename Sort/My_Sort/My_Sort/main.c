@@ -30,7 +30,7 @@ int main(int argc, const char * argv[]) {
     
 //    BubbleSort(a, n);
     
-//    QuickSort(a, n);
+    QuickSort(a, n);
     
 //    InsertSort(a, n);
     
@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     
 //    MergeSort(a, n);
     
-    HeapSort(a, n);
+//    HeapSort(a, n);
     
     printf("\nafter sort:\n");
     printArray(a, n);
