@@ -45,8 +45,8 @@ public:
                 ret.push_back(cmd.node->val);
             } else {
                 if (cmd.node->right) {
-                                    stack.push(Command("go", cmd.node->right));
-                                }
+                    stack.push(Command("go", cmd.node->right));
+                }
                 stack.push(Command("print", cmd.node));
                 if (cmd.node->left) {
                     stack.push(Command("go", cmd.node->left));
